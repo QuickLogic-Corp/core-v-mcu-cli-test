@@ -192,17 +192,3 @@ void genHimaxCamClock(void)
 
 }
 
-void genHimaxCamClock(void)
-{
-	AdvTimerUnit_t *adv_timer;
-
-	adv_timer = (AdvTimerUnit_t*) ADV_TIMER_START_ADDR;
-	adv_timer->timer_0_cmd_register = 1 << REG_TIMER_0_CMD_REGISTER_RESET_COMMAND_LSB; // reset
-	adv_timer->timer_0_config_register = 0; // FLL, up/done no prescaler
-	adv_timer->timer_0_threshold_register = 0x20000;
-	adv_timer->timer_0_threshold_channel_0_reg = 0x30001;
-	adv_timer->adv_timer_cfg_register = 0x1; // enable clock for timer0
-	adv_timer->timer_0_cmd_register = 1 << REG_TIMER_0_CMD_REGISTER_START_COMMAND_LSB; //start
-
-}
-
